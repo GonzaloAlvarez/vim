@@ -13,5 +13,10 @@ The plugins that I currently use
 Keyboard Shortcuts
 ------------------------
 
-My VIM keyboard shortcuts
+### General
 
+| Command | Shortcut | Description |
+| ------- | -------- | ----------- |
+| NERDTree Toggle | `F2` | Show/hide NERDTree |
+| Hidden chars Toggle | `F3` | Show/hide spaces/tabs/cr |
+| Paste mode Toggle | `F4` | Enable/disable paste mode to avoid auto-formatting |
