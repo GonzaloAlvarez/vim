@@ -1,0 +1,44 @@
+# #!/bin/bash
+snippet #!
+	#!/bin/bash
+	#
+	# File:   `Filename('$1.sh', 'foo.sh')`
+	# Date:	  `strftime("%Y-%m-%d")`
+	# Author: `g:snips_author`
+	#
+	
+snippet if
+	if [[ ${1:condition} ]]; then
+		${2:#statements}
+	fi
+snippet elif
+	elif [[ ${1:condition} ]]; then
+		${2:#statements}
+snippet for
+	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
+		${3:#statements}
+	done
+snippet wh
+	while [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet until
+	until [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet case
+	case ${1:word} in
+		${2:pattern})
+			${3};;
+	esac
+snippet todo
+	## `strftime("%d-%m-%y")` TODO: 
+snippet ##
+	##
+	# ${1:name}
+	#
+	# @params: ${2:params}
+	# @return: ${3:ret}
+	# @needs: ${4:needs}
+	# @author: `g:snips_author`
+	##
