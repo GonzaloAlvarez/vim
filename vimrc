@@ -185,6 +185,13 @@ if has('autocmd')
     " Logs
     autocmd BufRead,BufNewFile */var/output/logs/* setlocal filetype=messages
     autocmd FileType messages set wrap
+    " Mason
+    autocmd BufNewFile,BufRead *.m,*.mi set filetype=mason
+    autocmd FileType mason setlocal commentstring=#\ %s
+    " Typescript
+    autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
+    " JSON
+    autocmd BufNewFile,BufRead *.json,*.jsonp setlocal filetype=json
 endif
 
 " The % key will switch between opening and closing brackets for EVERYTHING
