@@ -1,24 +1,10 @@
 " VIM rc file
 " Created by Gonzalo Alvarez
 "
-" Commonly used commands:
-" F2 - NerdTree
-" F3 - Show hidden chars
-" F4 - Paste mode
-" F5
-" F6 
-" F7
-" F8 
-" F9 - Show line numbers
-" F10 - Status bar toggle
-" F11
-" F12
-" <Ctrl-A> - Select all
-" <Ctrl-P> - Recent files behaviour
-" ,cc - Comment block or line
-" ,cx - Uncomment block or line
-" ,s  - Signify toggle
-" ,/  - Disable search highlight
+
+"#######################
+" General Configuration
+"#######################
 
 " Not compatible is ok
 set nocompatible
@@ -104,12 +90,11 @@ set history=50
 " Visual selection automatically copied to the clipboard
 set go+=a
 
+" CtrlP configuration
+let g:ctrlp_working_path_mode = 'ra'
+
 " The following will make tabs and trailing spaces visible when requested
 set listchars=nbsp:.,tab:>-,trail:.,eol:$
-nmap <silent> <F3> :set nolist!<CR>
-
-" Disable highlight when I finished searching
-nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Put a list of buffers with airline on the top
 let g:airline#extensions#tabline#enabled = 1
@@ -203,31 +188,18 @@ if has('mouse')
     set mouse+=v
 endif
 
+" Nice trick to automatically detect bash files
+function! RedetectFiletype()
+    if getpos(".")[1] == 1 && getline(1) =~ '^#!'
+        filetype detect
+    endif
+endfunction
+inoremap <CR>:call RedetectFiletype()<CR>a<CR>
+
 " Autocomplete parenthesis, brackets and braces
 vnoremap ( s()<Esc>P
 vnoremap [ s[]<Esc>P
 vnoremap { s{}<Esc>P
-
-" CTRL-A is Select all
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
-nnoremap <C-A> <C-C>gggH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
-
-" CTRL-S to save
-nnoremap <silent> <C-S> :<C-u>Update<CR>
-noremap <C-S> :update<CR>
-vnoremap <C-S> <C-C>:update<CR>
-inoremap <C-S> <C-O>:update<CR>
-
-" F11 show/hide line numbers
-nnoremap <silent> <F9>  :set invnumber number?<CR>
-
-" F2 to show and hide NERD Tree
-nnoremap <silent> <F2> :NERDTreeToggle<CR>
 
 " Configure nerdtree to ignore some files
 let NERDTreeIgnore=[ '\.o$', '\.swp$', '\~$', '\.class$' ]
@@ -253,28 +225,8 @@ ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>
 au VimEnter * call GetSnippets(g:HOME_INIT_PATH. "/snippets", '_')
 au FileType * if &ft != 'help' | call GetSnippets(g:HOME_INIT_PATH. "/snippets", &ft) | endif
 
-" comments configuration
-" key-mappings for comment line in normal mode
-noremap  <silent> <leader>cc :call CommentLine()<CR>
-" key-mappings for range comment lines in visual <Shift-V> mode
-vnoremap <silent> <leader>cc :call RangeCommentLine()<CR>
-" key-mappings for un-comment line in normal mode
-noremap  <silent> <leader>cx :call UnCommentLine()<CR>
-" key-mappings for range un-comment lines in visual <Shift-V> mode
-vnoremap <silent> <leader>cx :call RangeUnCommentLine()<CR>
-
 " Signify plugin bindings and confs
 let g:signify_disable_by_default = 1
-nnoremap <silent> <leader>s :SignifyToggle<Cr>
-
-" Paste toggle to allow easy pasting
-set pastetoggle=<F4>
-
-" Some help in window navigation
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-map <C-k> <C-w>k
-map <C-j> <C-w>j
 
 " Enable full colors if available
 if &term == "xterm" || &term == "screen-bce"
@@ -293,8 +245,38 @@ highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
+"######################
+" BINDINGS
+"######################
+
+" Show/hide hidden chars
+nmap <silent> <leader>h :set nolist!<CR>
+
+" Paste toggle to allow easy pasting
+set pastetoggle=<leader>P
+
+" Show/hide line numbers
+nnoremap <silent> <leader>m  :set invnumber number?<CR>
+
+" Show and hide NERD Tree
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+
+" Signify plugin
+nnoremap <silent> <leader>s :SignifyToggle<Cr>
+
+" Comments configuration
+noremap  <silent> <leader>cc :call CommentLine()<CR>
+vnoremap <silent> <leader>cc :call RangeCommentLine()<CR>
+noremap  <silent> <leader>cx :call UnCommentLine()<CR>
+vnoremap <silent> <leader>cx :call RangeUnCommentLine()<CR>
+
+" Some help in window navigation
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+
 " Ctrlp mappings
-let g:ctrlp_working_path_mode = 'ra'
 nnoremap <silent> <leader>pp :CtrlP<CR>
 nnoremap <silent> <leader>pb :CtrlPBuffer<CR>
 nnoremap <silent> <leader>pr :CtrlPMRU<CR>
@@ -307,21 +289,32 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 
 " Buffers instead of tabs. See: https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 set hidden
-nnoremap <silent> <C-T> :enew<CR>
-nnoremap <silent> <C-Left> :bprevious<CR>
-nnoremap <silent> <C-Right> :bnext<CR>
-nnoremap <silent> <C-Q> :bp <BAR> bd #<CR>
+nnoremap <silent> <leader>bc :enew<CR>
+nnoremap <silent> <leader>bp :bprevious<CR>
+nnoremap <silent> <leader>bn :bnext<CR>
+nnoremap <silent> <leader>bq :bp <BAR> bd #<CR>
 
 " Move around windows
-nnoremap <silent> <A-Up> :wincmd k<CR>
-nnoremap <silent> <A-Down> :wincmd j<CR>
-nnoremap <silent> <A-Left> :wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
+nnoremap <silent> <leader>wu :wincmd k<CR>
+nnoremap <silent> <leader>wd :wincmd j<CR>
+nnoremap <silent> <leader>wl :wincmd h<CR>
+nnoremap <silent> <leader>wr :wincmd l<CR>
 
-" Nice trick to automatically detect bash files
-function! RedetectFiletype()
-    if getpos(".")[1] == 1 && getline(1) =~ '^#!'
-        filetype detect
-    endif
-endfunction
-inoremap <CR>:call RedetectFiletype()<CR>a<CR>
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+nnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
+
+" Easy save
+nnoremap <silent> <C-S> :<C-u>Update<CR>
+noremap <C-S> :update<CR>
+vnoremap <C-S> <C-C>:update<CR>
+inoremap <C-S> <C-O>:update<CR>
+
+" Disable highlight when I finished searching
+nmap <silent> <leader>/ :nohlsearch<CR>
+
