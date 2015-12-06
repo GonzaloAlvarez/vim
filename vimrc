@@ -229,10 +229,8 @@ au FileType * if &ft != 'help' | call GetSnippets(g:HOME_INIT_PATH. "/snippets",
 let g:signify_disable_by_default = 1
 
 " Enable full colors if available
-if &term == "xterm" || &term == "screen-bce"
-    set t_Co=256
-    colorscheme charged-256
-endif
+set t_Co=256
+colorscheme torte
 
 " Set the right encoding
 set encoding=utf-8
