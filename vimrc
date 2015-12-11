@@ -230,7 +230,7 @@ let g:signify_disable_by_default = 1
 
 " Enable full colors if available
 set t_Co=256
-colorscheme torte
+colorscheme gtorte
 
 " Set the right encoding
 set encoding=utf-8
