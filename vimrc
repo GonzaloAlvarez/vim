@@ -111,10 +111,6 @@ for fl in g:HOME_RC_SCRIPTS
     endif
 endfor
 
-if exists('$ECLIM_ENABLED')
-    exec "source ". g:HOME_INIT_PATH . "/eclim/eclim.vim"
-endif
-
 function SetMarkdownOptions()
     set wrap
     set linebreak
@@ -163,10 +159,6 @@ if has('autocmd')
     " JSP/XML
     autocmd FileType jsp,xml set omnifunc=xmlcomplete#CompleteTags
     autocmd FileType jsp,xml inoremap </ </<C-X><C-O>
-    " Eclim
-    if exists('$ECLIM_ENABLED')
-        exec "autocmd FileType java source ". g:HOME_INIT_PATH . "/eclim/java.vim"
-    endif
     " Logs
     autocmd BufRead,BufNewFile */var/output/logs/* setlocal filetype=messages
     autocmd FileType messages set wrap
