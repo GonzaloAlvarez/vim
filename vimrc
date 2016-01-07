@@ -280,9 +280,9 @@ nnoremap <silent> <leader>gc :Gcommit<CR>
 " Buffers instead of tabs. See: https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 set hidden
 nnoremap <silent> <leader>bc :enew<CR>
-nnoremap <silent> <leader>bp :bprevious<CR>
-nnoremap <silent> <leader>bn :bnext<CR>
-nnoremap <silent> <leader>bq :bp <BAR> bd #<CR>
+nnoremap <silent> <leader><s-tab> :bprevious<CR>
+nnoremap <silent> <leader><tab> :bnext<CR>
+nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
 
 " Move around windows
 nnoremap <silent> <leader>wu :wincmd k<CR>
