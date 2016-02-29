@@ -129,6 +129,13 @@ function SetMarkdownOptions()
     imap <silent> <End> <C-o>g<End>
 endfunction
 
+function SetJadeOptions()
+    set ts=2
+    set softtabstop=2
+    set shiftwidth=2
+    setlocal comments=://-,:// commentstring=//\ %s
+endfunction
+
 "Run the autocmd scripts
 if has('autocmd')
     " Bash shell binds
@@ -169,6 +176,9 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
     " JSON
     autocmd BufNewFile,BufRead *.json,*.jsonp setlocal filetype=json
+    " Jade
+    autocmd BufNewFile,BufRead *.jade setlocal filetype=pug
+    autocmd FileType pug call SetJadeOptions()
 endif
 
 " The % key will switch between opening and closing brackets for EVERYTHING
