@@ -318,3 +318,6 @@ inoremap <C-S> <C-O>:update<CR>
 " Disable highlight when I finished searching
 nmap <silent> <leader>/ :nohlsearch<CR>
 
+" Keep visual lines enabled when identing
+vnoremap > >gv
+vnoremap < <gv
