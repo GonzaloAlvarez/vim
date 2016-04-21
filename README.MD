@@ -18,7 +18,7 @@ Keyboard Shortcuts
 | Command | Shortcut | Description |
 | ------- | -------- | ----------- |
 | NERDTree Toggle | `,t` | Show/hide NERDTree |
-| Hidden chars Toggle | `,h` | Show/hide spaces/tabs/cr |
+| Hidden chars Toggle | `,l` | Show/hide spaces/tabs/cr |
 | Paste mode Toggle | `,P` | Enable/disable paste mode to avoid auto-formatting |
 | Signify | `,s` | Show Git changes with Signify |
 | Line numbers | `,m` | Show/hide line numbers |

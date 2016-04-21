@@ -93,9 +93,6 @@ set go+=a
 " CtrlP configuration
 let g:ctrlp_working_path_mode = 'ra'
 
-" The following will make tabs and trailing spaces visible when requested
-set listchars=nbsp:.,tab:>-,trail:.,eol:$
-
 " Put a list of buffers with airline on the top
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -249,9 +246,6 @@ highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 " BINDINGS
 "######################
 
-" Show/hide hidden chars
-nmap <silent> <leader>h :set nolist!<CR>
-
 " Paste toggle to allow easy pasting
 set pastetoggle=<leader>P
 
@@ -321,3 +315,10 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Keep visual lines enabled when identing
 vnoremap > >gv
 vnoremap < <gv
+
+" toggle invisible characters
+set nolist
+set listchars=nbsp:.,tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+set showbreak=↪
+nmap <leader>l :set list!<cr>
