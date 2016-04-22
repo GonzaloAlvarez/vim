@@ -250,7 +250,7 @@ highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 "######################
 
 " Show/hide hidden chars
-nmap <silent> <leader>h :set nolist!<CR>
+nmap <silent> <leader>l :set nolist!<CR>
 
 " Paste toggle to allow easy pasting
 set pastetoggle=<leader>P
