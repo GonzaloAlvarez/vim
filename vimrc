@@ -93,9 +93,6 @@ set go+=a
 " CtrlP configuration
 let g:ctrlp_working_path_mode = 'ra'
 
-" The following will make tabs and trailing spaces visible when requested
-set listchars=nbsp:.,tab:>-,trail:.,eol:$
-
 " Put a list of buffers with airline on the top
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -321,3 +318,5 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 " Keep visual lines enabled when identing
 vnoremap > >gv
 vnoremap < <gv
+
+highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
