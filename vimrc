@@ -126,6 +126,14 @@ function SetMarkdownOptions()
     imap <silent> <End> <C-o>g<End>
 endfunction
 
+function SetCoffeeOptions()
+    set ts=2
+    set softtabstop=2
+    set shiftwidth=2
+    set cindent
+    setlocal comments=:# commentstring=#\ %s
+endfunction
+
 function SetJadeOptions()
     set ts=2
     set softtabstop=2
@@ -176,6 +184,9 @@ if has('autocmd')
     " Jade
     autocmd BufNewFile,BufRead *.jade setlocal filetype=pug
     autocmd FileType pug call SetJadeOptions()
+    " CoffeeScript
+    autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
+    autocmd FileType coffee call SetCoffeeOptions()
 endif
 
 " The % key will switch between opening and closing brackets for EVERYTHING
