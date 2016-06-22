@@ -22,6 +22,7 @@ Keyboard Shortcuts
 | Paste mode Toggle | `,P` | Enable/disable paste mode to avoid auto-formatting |
 | Signify | `,s` | Show Git changes with Signify |
 | Line numbers | `,m` | Show/hide line numbers |
+| Relative numbers | `,m` | Toggle between absolute and relative numbers |
 
 ### Within NERDTree
 | Command | Shortcut | Description |
@@ -50,7 +51,7 @@ Keyboard Shortcuts
 | New | `,bc` | New buffer |
 | Previous | `,bp` | Previous buffer |
 | Next | `,bn` | Next buffer |
-| Quit | `,bq` | Close current buffer |
+| Quit | `,q` | Close current buffer |
 
 ### Fugitive
 | Command | Shortcut | Description |

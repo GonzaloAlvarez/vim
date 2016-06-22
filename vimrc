@@ -24,9 +24,6 @@ set number
 " Show airline always and set preferences
 set laststatus=2
 
-" Show search matches as you type
-set incsearch
-
 " Living on the wild side. No backup and no swap file
 set nobackup
 set noswapfile
@@ -45,6 +42,7 @@ set expandtab
 
 " Change leader key to ,
 let mapleader = ","
+let g:mapleader = ","
 
 " I hate noise. The t_vb bit removes any delay also
 set visualbell t_vb=
@@ -263,11 +261,11 @@ nmap <silent> <leader>l :set nolist!<CR>
 " Paste toggle to allow easy pasting
 set pastetoggle=<leader>P
 
-" Show/hide line numbers
-nnoremap <silent> <leader>m  :set invnumber number?<CR>
-
 " Show and hide NERD Tree
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+
+" Hide nerd tree once we opened the file
+let NERDTreeQuitOnOpen = 1
 
 " Signify plugin
 nnoremap <silent> <leader>s :SignifyToggle<Cr>
@@ -301,6 +299,7 @@ nnoremap <silent> <leader>bc :enew<CR>
 nnoremap <silent> <leader><s-tab> :bprevious<CR>
 nnoremap <silent> <leader><tab> :bnext<CR>
 nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
+nnoremap <leader>be :e 
 
 " Move around windows
 nnoremap <silent> <leader>wu :wincmd k<CR>
@@ -330,4 +329,55 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 vnoremap > >gv
 vnoremap < <gv
 
-highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+" make the highlighting of tabs less annoying
+highlight SpecialKey ctermbg=none 
+
+" Kill arrow keys
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+
+" Remap vertical movement keys
+nnoremap J <PageDown>
+nnoremap K <PageUp>
+
+" Kill pageup and pagedown
+nnoremap <PageDown> <NOP>
+nnoremap <PageUp> <NOP>
+
+" Show matching brackets when text indicator is over them
+set showmatch 
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" Relative line numbers
+function! NumberToggle(insert)
+    if(a:insert == 1)
+        if(&relativenumber == 1)
+            set number
+        endif
+    elseif(a:insert == 2)
+        if(&number == 1)
+            set relativenumber
+        endif
+    else
+        if(&relativenumber == 1)
+            set number
+        elseif(&number == 1)
+            set invnumber
+        else
+            set relativenumber
+        endif
+    endif
+    endfunc
+nnoremap <silent> <leader>m :call NumberToggle(0)<CR>
+set relativenumber
+" Show absolute numbers when inserting
+autocmd InsertEnter * :call NumberToggle(1)
+autocmd InsertLeave * :call NumberToggle(2)
+autocmd BufRead * :call NumberToggle(2)
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
