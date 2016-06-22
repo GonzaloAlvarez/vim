@@ -372,16 +372,16 @@ function! NumberToggle(insert)
     endif
 endfunc
 
-if has("relativenumber")
-    nnoremap <silent> <leader>m :call NumberToggle(0)<CR>
+try
     set relativenumber
+    nnoremap <silent> <leader>m :call NumberToggle(0)<CR>
     " Show absolute numbers when inserting
     autocmd InsertEnter * :call NumberToggle(1)
     autocmd InsertLeave * :call NumberToggle(2)
     autocmd BufRead * :call NumberToggle(2)
-else
+catch
     set number
-endif
+endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
