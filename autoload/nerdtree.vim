@@ -146,7 +146,7 @@ function! nerdtree#postSourceActions()
     call nerdtree#ui_glue#createDefaultBindings()
 
     "load all nerdtree plugins
-    runtime! nerdtree_plugin/**/*.vim
+    runtime! lib/nerdtree_plugin/**/*.vim
 endfunction
 
 "FUNCTION: nerdtree#runningWindows(dir) {{{2
