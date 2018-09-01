@@ -383,6 +383,14 @@ catch
     set number
 endtry
 
+" Change color for the background of the signify background
+hi clear SignColumn
+hi clear SignifySignAdd
+hi clear SignifySignDelete
+hi clear SignifySignChange
+hi clear SignifySignChangeDelete
+hi clear SignifySignDeleteFirstLine
+
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
