@@ -397,3 +397,8 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " Modify tmux window name to the file we are editing
 autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 autocmd VimLeave * call system("tmux rename-window bash")
+
+" Make Sneak my default search
+"let g:sneak#label = 1
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
