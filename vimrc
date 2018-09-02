@@ -301,12 +301,6 @@ nnoremap <silent> <leader><tab> :bnext<CR>
 nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
 nnoremap <leader>be :e 
 
-" Move around windows
-nnoremap <silent> <leader>wu :wincmd k<CR>
-nnoremap <silent> <leader>wd :wincmd j<CR>
-nnoremap <silent> <leader>wl :wincmd h<CR>
-nnoremap <silent> <leader>wr :wincmd l<CR>
-
 " CTRL-A is Select all
 noremap <C-A> gggH<C-O>G
 inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
@@ -399,6 +393,17 @@ autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " 
 autocmd VimLeave * call system("tmux rename-window bash")
 
 " Make Sneak my default search
-"let g:sneak#label = 1
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+let g:sneak#label = 1
+
+" Split current buffer
+function WinSplit()
+    let wincount = winnr('$')
+    let bufcount = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+    on
+    if bufcount > 1 && wincount == 1
+        vsp | b#
+    endif
+endfunc
+
+nmap <leader>w :call WinSplit()<CR>
+nmap <leader>W <C-w>w
