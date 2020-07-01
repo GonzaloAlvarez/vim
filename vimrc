@@ -139,6 +139,11 @@ function SetJadeOptions()
     setlocal comments=://-,:// commentstring=//\ %s
 endfunction
 
+function SetYamlOptions()
+    setlocal sw=2 ts=2 sts=2 et
+    setlocal nosmartindent
+endfunction
+
 "Run the autocmd scripts
 if has('autocmd')
     " Bash shell binds
@@ -160,7 +165,9 @@ if has('autocmd')
     autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal g'\"" | endif
     " CSS Less files syntax hightlight
     autocmd VimEnter *.less setlocal filetype=less
+    " Yaml files
     autocmd VimEnter *.yaml,*.yml setlocal filetype=yaml
+    autocmd FileType yaml call SetYamlOptions()
     " Markdown files syntax highlight
     autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd
     autocmd FileType mkd call SetMarkdownOptions()
