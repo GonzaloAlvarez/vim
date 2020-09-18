@@ -186,6 +186,9 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
     " JSON
     autocmd BufNewFile,BufRead *.json,*.jsonp setlocal filetype=json
+    " Terraform
+    autocmd BufNewFile,BufRead *.tf setlocal filetype=terraform
+    autocmd FileType terraform call SetYamlOptions()
     " Jade
     autocmd BufNewFile,BufRead *.jade setlocal filetype=pug
     autocmd FileType pug call SetJadeOptions()
