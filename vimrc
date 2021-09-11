@@ -15,6 +15,9 @@ filetype on
 filetype plugin on
 filetype indent on
 
+" Make sure we use the right shell - https://stackoverflow.com/questions/12230290/vim-errors-on-vim-startup-when-run-in-fish-shell
+set shell=/bin/bash
+
 " Make buffers hidden on change view, not force save
 set hidden
 
@@ -417,3 +420,4 @@ endfunc
 
 nmap <leader>w :call WinSplit()<CR>
 nmap <leader>W <C-w>w
+
