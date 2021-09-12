@@ -7,6 +7,9 @@
 " see https://github.com/elzr/vim-json/issues/42
 runtime! ftplugin/json.vim
 
+" Lets keep neovim happy - https://github.com/sheerun/vim-polyglot/issues/356
+let g:vim_json_syntax_conceal=0
+
 if !exists("main_syntax")
   if version < 600
     syntax clear
