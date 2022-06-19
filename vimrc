@@ -102,6 +102,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tagbar#enabled = 0
 
+let g:airline#extensions#systastic#enabled = 1
+
 " set to HOME_INIT_PATH the path of the 
 let g:HOME_INIT_PATH = expand("$HOME/.vim")
 " Load any other plugin installed in home
@@ -309,7 +311,7 @@ nnoremap <silent> <leader>bc :enew<CR>
 nnoremap <silent> <leader><s-tab> :bprevious<CR>
 nnoremap <silent> <leader><tab> :bnext<CR>
 nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
-nnoremap <leader>be :e 
+nnoremap <leader>be :e
 
 " CTRL-A is Select all
 noremap <C-A> gggH<C-O>G
@@ -387,6 +389,9 @@ catch
     set number
 endtry
 
+" Enable merging the line number with the sign (gutter) line
+set signcolumn=number
+
 " Change color for the background of the signify background
 hi clear SignColumn
 hi clear SignifySignAdd
@@ -418,3 +423,12 @@ endfunc
 nmap <leader>w :call WinSplit()<CR>
 nmap <leader>W <C-w>w
 
+" Manage Syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = "\u2B22"
+let g:syntastic_warning_symbol = "\u2755"
+let g:syntastic_style_warning_symbol = "\u2755"
+let g:syntastic_style_error_symbol = "\u2B22"
+let g:syntastic_quiet_messages = { "level": "warnings" }
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_enable_balloons = 1

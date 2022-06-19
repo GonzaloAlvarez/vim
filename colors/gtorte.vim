@@ -37,6 +37,19 @@ highlight StatusLine ctermfg=blue	ctermbg=white
 highlight Statement  ctermfg=Yellow			cterm=NONE
 highlight Type						cterm=NONE
 highlight LineNr       ctermfg=237 ctermbg=232
+highlight clear SpellBad
+highlight SpellBad   ctermfg=DarkYellow cterm=bold
+highlight clear SignColumn
+highlight SignColumn ctermfg=DarkYellow
+highlight clear SyntasticStyleErrorSign
+highlight SyntasticStyleErrorSign ctermfg=DarkYellow ctermbg=Black
+highlight clear SyntasticStyleWarningSign
+highlight SyntasticStyleWarningSign ctermfg=DarkYellow ctermbg=Black
+highlight clear SyntasticErrorSign
+highlight SyntasticErrorSign ctermfg=DarkYellow ctermbg=Black
+highlight clear SyntasticWarningSign
+highlight SyntasticWarningSign ctermfg=DarkYellow ctermbg=Black
+
 
 " only for vim 5
 if has("unix")
