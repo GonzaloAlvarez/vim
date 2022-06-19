@@ -13,7 +13,6 @@ let g:loaded_ctrlp_line = 1
 cal add(g:ctrlp_ext_vars, {
 	\ 'init': 'ctrlp#line#init(s:crbufnr)',
 	\ 'accept': 'ctrlp#line#accept',
-	\ 'act_farg' : 'dict',
 	\ 'lname': 'lines',
 	\ 'sname': 'lns',
 	\ 'type': 'tabe',
@@ -32,7 +31,7 @@ endf
 " Public {{{1
 fu! ctrlp#line#init(bufnr)
 	let [lines, bufnr] = [[], exists('s:bufnr') ? s:bufnr : a:bufnr]
-	let bufs = exists('s:lnmode') && !empty(s:lnmode) ? ctrlp#buffers('id') : [bufnr]
+	let bufs = exists('s:lnmode') && s:lnmode ? ctrlp#buffers('id') : [bufnr]
 	for bufnr in bufs
 		let [lfb, bufn] = [getbufline(bufnr, 1, '$'), bufname(bufnr)]
 		if lfb == [] && bufn != ''
@@ -51,19 +50,11 @@ fu! ctrlp#line#init(bufnr)
 	retu lines
 endf
 
-fu! ctrlp#line#accept(dict)
-	let mode = a:dict['action']
-	let str = a:dict['line']
-	let input = a:dict['input']
-	let info = matchlist(str, '\t|[^|]\+|\(\d\+\):\(\d\+\)|$')
+fu! ctrlp#line#accept(mode, str)
+	let info = matchlist(a:str, '\t|[^|]\+|\(\d\+\):\(\d\+\)|$')
 	let bufnr = str2nr(get(info, 1))
 	if bufnr
-		cal ctrlp#acceptfile(mode, bufnr, get(info, 2))
-		if !empty(input)
-			let @/ = input
-			call search(input, 'c')
-			call histadd("search", input)
-		en
+		cal ctrlp#acceptfile(a:mode, bufnr, get(info, 2))
 	en
 endf
 
