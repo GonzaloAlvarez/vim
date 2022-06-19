@@ -165,6 +165,7 @@ if has('autocmd')
     autocmd VimEnter *.py map <silent> w <Plug>CamelCaseMotion_w
     autocmd VimEnter *.py map <silent> b <Plug>CamelCaseMotion_b
     autocmd VimEnter *.py map <silent> e <Plug>CamelCaseMotion_e
+    autocmd BufRead,BufNewFile *.py match BadWhitespace /\s\+$/
     " C binds
     autocmd VimEnter *.c setlocal filetype=c
     autocmd FileType c,cpp nnoremap <silent> <F6> :make<CR>
