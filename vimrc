@@ -159,6 +159,9 @@ if has('autocmd')
     exec "autocmd FileType python setlocal dict+=". expand("<sfile>:p:h") ."/dicts/python.dict"
     autocmd FileType python setlocal isk+=.,(
     autocmd VimEnter *.py setlocal complete+=k
+    autocmd VimEnter *.py map <silent> w <Plug>CamelCaseMotion_w
+    autocmd VimEnter *.py map <silent> b <Plug>CamelCaseMotion_b
+    autocmd VimEnter *.py map <silent> e <Plug>CamelCaseMotion_e
     " C binds
     autocmd VimEnter *.c setlocal filetype=c
     autocmd FileType c,cpp nnoremap <silent> <F6> :make<CR>
@@ -235,16 +238,6 @@ if has('gui')
 else
     inoremap <Nul> <C-n>
 endif
-
-" snippetsMate configuration
-let g:snips_author = "Gonzalo Alvarez"
-ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
-snor <silent> <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
-ino <silent> <s-tab> <c-r>=BackwardsSnippet()<cr>
-snor <silent> <s-tab> <esc>i<right><c-r>=BackwardsSnippet()<cr>
-ino <silent> <c-r><tab> <c-r>=ShowAvailableSnips()<cr>
-au VimEnter * call GetSnippets(g:HOME_INIT_PATH. "/snippets", '_')
-au FileType * if &ft != 'help' | call GetSnippets(g:HOME_INIT_PATH. "/snippets", &ft) | endif
 
 " Signify plugin bindings and confs
 let g:signify_disable_by_default = 1
