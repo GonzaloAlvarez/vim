@@ -95,7 +95,7 @@ set go+=a
 
 " CtrlP configuration
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f | grep -v .DS_Store']
 
 " Put a list of buffers with airline on the top
 let g:airline#extensions#tabline#enabled = 1
@@ -432,3 +432,5 @@ let g:syntastic_style_error_symbol = "\u2B22"
 let g:syntastic_quiet_messages = { "level": "warnings" }
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_enable_balloons = 1
+
+nmap <leader>r :SyntasticToggleMode<CR>

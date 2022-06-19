@@ -23,6 +23,7 @@ Keyboard Shortcuts
 | Signify | `,s` | Show Git changes with Signify |
 | Line numbers | `,m` | Show/hide line numbers |
 | Relative numbers | `,m` | Toggle between absolute and relative numbers |
+| Syntastic | `,r` | Toggle Syntastic to run on buffer write or not |
 
 ### Within NERDTree
 | Command | Shortcut | Description |
