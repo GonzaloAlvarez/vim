@@ -67,6 +67,8 @@ set ignorecase
 
 " Redraw only when needed
 set lazyredraw
+set ttyfast
+set updatetime=250
 
 " Only ignore case when we type lower case when searching
 set smartcase
@@ -93,6 +95,7 @@ set go+=a
 
 " CtrlP configuration
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f']
 
 " Put a list of buffers with airline on the top
 let g:airline#extensions#tabline#enabled = 1
