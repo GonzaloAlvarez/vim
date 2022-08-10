@@ -93,6 +93,9 @@ set history=50
 " Visual selection automatically copied to the clipboard
 set go+=a
 
+" Check and store which OS we are running on
+let uname = substitute(system('uname'), '\n', '', '')
+
 " CtrlP configuration
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co - exclude-standard', 'find %s -type f | grep -v .DS_Store']
@@ -425,12 +428,19 @@ nmap <leader>W <C-w>w
 
 " Manage Syntastic
 let g:syntastic_check_on_open = 1
-let g:syntastic_error_symbol = "\u2B22"
+if uname == "Linux"
+    let g:syntastic_error_symbol = "\u27a4"
+else
+    let g:syntastic_error_symbol = "\u2B22"
+endif
 let g:syntastic_warning_symbol = "\u2755"
 let g:syntastic_style_warning_symbol = "\u2755"
 let g:syntastic_style_error_symbol = "\u2B22"
 let g:syntastic_quiet_messages = { "level": "warnings" }
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_enable_balloons = 1
+let g:syntastic_c_checkers = ['gcc']
+let g:syntastic_c_compiler_options = "-std=c99 -Wall -Werror"
+
 
 nmap <leader>r :SyntasticToggleMode<CR>
