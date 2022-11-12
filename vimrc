@@ -339,7 +339,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " make the highlighting of tabs less annoying
-highlight SpecialKey ctermbg=none 
+highlight SpecialKey ctermbg=none
 
 " Kill arrow keys
 nnoremap <Up> <NOP>
@@ -356,7 +356,7 @@ nnoremap <PageDown> <NOP>
 nnoremap <PageUp> <NOP>
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -441,6 +441,7 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_enable_balloons = 1
 let g:syntastic_c_checkers = ['gcc']
 let g:syntastic_c_compiler_options = "-std=c99 -Wall -Werror"
+let g:syntastic_python_flake8_args='--max-line-length=120 --ignore=E128'
 
 
 nmap <leader>r :SyntasticToggleMode<CR>
