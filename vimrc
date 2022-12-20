@@ -254,6 +254,8 @@ let g:signify_disable_by_default = 1
 " Enable full colors if available
 set t_Co=256
 colorscheme gtorte
+"set background=dark
+"colorscheme papercolor
 
 " Set the right encoding
 set encoding=utf-8
@@ -426,22 +428,25 @@ endfunc
 nmap <leader>w :call WinSplit()<CR>
 nmap <leader>W <C-w>w
 
-" Manage Syntastic
-let g:syntastic_check_on_open = 1
-if uname == "Linux"
-    let g:syntastic_error_symbol = "\u27a4"
-else
-    let g:syntastic_error_symbol = "\u2B22"
-endif
-let g:syntastic_warning_symbol = "\u2755"
-let g:syntastic_style_warning_symbol = "\u2755"
-let g:syntastic_style_error_symbol = "\u2B22"
-let g:syntastic_quiet_messages = { "level": "warnings" }
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_enable_balloons = 1
-let g:syntastic_c_checkers = ['gcc']
-let g:syntastic_c_compiler_options = "-std=c99 -Wall -Werror"
-let g:syntastic_python_flake8_args='--max-line-length=120 --ignore=E128'
+" ALE Configuration
+nmap <F8> <Plug>(ale_fix)
+let g:ale_lint_delay = 5000
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = "\u2022"
+let g:ale_sign_warning = "\u2022"
+let g:ale_python_flake8_options = '--max-line-length=120 --ignore=E128'
+let g:ale_floating_preview = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+let g:ale_detail_to_floating_preview = 1
+let g:ale_set_balloons = 1
 
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
-nmap <leader>r :SyntasticToggleMode<CR>
+" QuickUI
+let g:quickui_color_scheme = 'papercol dark'
+let g:quickui_border_style = 2

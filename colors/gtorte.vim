@@ -49,7 +49,7 @@ highlight clear SyntasticErrorSign
 highlight SyntasticErrorSign ctermfg=DarkYellow ctermbg=Black
 highlight clear SyntasticWarningSign
 highlight SyntasticWarningSign ctermfg=DarkYellow ctermbg=Black
-
+highlight PMenu ctermbg=LightGray ctermfg=Blue
 
 " only for vim 5
 if has("unix")
