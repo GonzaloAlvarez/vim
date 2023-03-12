@@ -16,6 +16,7 @@ let g:context_menu_python = [
             \ ["Go To Definion", "ALEGoToDefinition"],
             \ ["--", ],
             \ ["Fix Issues", "ALEFix"],
+            \ ["Open Terminal", "bel term"],
             \ ]
 
 nnoremap <silent><leader>m :call quickui#tools#clever_context('m', g:context_menu_python, {})<cr>

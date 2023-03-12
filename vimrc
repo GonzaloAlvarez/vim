@@ -450,3 +450,6 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 " QuickUI
 let g:quickui_color_scheme = 'papercol dark'
 let g:quickui_border_style = 2
+
+" Open URL from word under the cursor
+nnoremap gx :!xdg-open <cWORD> &<CR><CR>
