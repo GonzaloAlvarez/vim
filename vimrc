@@ -165,11 +165,7 @@ if has('autocmd')
     autocmd VimEnter *.py setlocal filetype=python
     autocmd FileType python setlocal complete+=k
     exec "autocmd FileType python setlocal dict+=". expand("<sfile>:p:h") ."/dicts/python.dict"
-    autocmd FileType python setlocal isk+=.,(
     autocmd VimEnter *.py setlocal complete+=k
-    autocmd VimEnter *.py map <silent> w <Plug>CamelCaseMotion_w
-    autocmd VimEnter *.py map <silent> b <Plug>CamelCaseMotion_b
-    autocmd VimEnter *.py map <silent> e <Plug>CamelCaseMotion_e
     autocmd BufRead,BufNewFile *.py match BadWhitespace /\s\+$/
     " C binds
     autocmd VimEnter *.c setlocal filetype=c
