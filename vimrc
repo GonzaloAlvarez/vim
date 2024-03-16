@@ -27,6 +27,9 @@ set number
 " Show airline always and set preferences
 set laststatus=2
 
+" Show always at least 10 lines around the cursor
+set scrolloff=10
+
 " Living on the wild side. No backup and no swap file
 set nobackup
 set noswapfile
